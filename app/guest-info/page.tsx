@@ -41,7 +41,7 @@ export default function Page() {
 
             <div className="relative aspect-[2/1] bg-gray-100">
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/www.reserval.com_ar%20(2)-EMTjR2CZP5Ss57xEnRSX1a8GpnFcH3.png"
+                src="/placholder.png"
                 alt="Cruise Ship"
                 fill
                 className="object-cover"
