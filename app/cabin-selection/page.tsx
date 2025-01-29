@@ -12,10 +12,10 @@ import { collection, addDoc } from 'firebase/firestore';
 
 export default function CabinSelectionPage() {
   const router = useRouter();
-  const [selectedCabin, setSelectedCabin] = useState(null);
+  const [selectedCabin, setSelectedCabin] = useState('');
 
-  const handleCabinSelection = async (cabin: string | SetStateAction<null>) => {
-    setSelectedCabin(cabin);
+  const handleCabinSelection = async (cabin: string | SetStateAction<string>) => {
+    setSelectedCabin(cabin!);
     try {
       const docRef = await addDoc(collection(db, 'bookings'), {
         cabin: cabin,
