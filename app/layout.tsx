@@ -13,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body style={{ zoom: 0.7 }}>{children}</body>
+      <body style={{ zoom: 0.6 }}>{children}</body>
     </html>
   );
 }

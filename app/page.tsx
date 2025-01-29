@@ -24,6 +24,7 @@ export default function Page() {
         background: 'url(/bbgg.webp) no-repeat ',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
+        height:'160vh',
       }}
     >
       {/* Top Navigation */}
