@@ -82,7 +82,7 @@ export default function Page() {
 
       {/* Main Content */}
       <main className="px-4 pt-6">
-        <div className=" bg-gradient-to-b from-sky-400 to-blue-800 rounded-t-3xl p-6">
+        <div className=" bg-gradient-to-b from-sky-400 to-blue-900 rounded-3xl p-6">
           <div className="flex items-center justify-between mb-6">
             <h1 className="text-2xl font-bold text-blue-900">أرويا كروز</h1>
             <Image
@@ -188,26 +188,26 @@ export default function Page() {
       </main>
 
       {/* Bottom Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 bg-white border-t">
+      <nav className="fixed bottom-0 left-0 right-0 bg-blue-900 text-white ">
         <div className="flex justify-around p-4">
-          <Button variant="ghost" className="flex flex-col items-center">
-            <User className="w-5 h-5 mb-1" />
+          <Button variant="ghost" className="flex flex-col items-center hover:bg-blue-900 hover:text-blue-500">
+            <User className=" mb-1" />
             <span className="text-xs">لوحة التحكم</span>
           </Button>
-          <Button variant="ghost" className="flex flex-col items-center">
-            <Briefcase className="w-5 h-5 mb-1" />
+          <Button variant="ghost" className="flex flex-col items-center hover:bg-blue-900 hover:text-blue-500">
+            <Briefcase className="mb-1" />
             <span className="text-xs">حجوزاتي</span>
           </Button>
-          <Button variant="ghost" className="flex flex-col items-center">
-            <Tag className="w-5 h-5 mb-1" />
+          <Button variant="ghost" className="flex flex-col items-center hover:bg-blue-900 hover:text-blue-500">
+            <Tag className=" mb-1" />
             <span className="text-xs">العروض</span>
           </Button>
           <Button
             variant="ghost"
-            className="flex flex-col items-center text-blue-600"
+            className="flex flex-col items-center text-blue-600 hover:bg-blue-900 hover:text-blue-500"
           >
-            <Home className="w-5 h-5 mb-1" />
-            <span className="text-xs">الصفحة الرئيسية</span>
+            <Home className=" mb-1" />
+            <span className="text-xs text-white">الصفحة الرئيسية</span>
           </Button>
         </div>
       </nav>
