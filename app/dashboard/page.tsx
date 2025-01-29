@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -19,9 +19,12 @@ import { collection, getDocs } from 'firebase/firestore';
 
 export default function DashboardPage() {
   const router = useRouter();
-  const [bookings, setBookings] = useState([]);
+  const [bookings, setBookings] = useState<{
+    cabin?: ReactNode |undefined;
+    otpVerified?: any;id:string,passengerInfo?:any
+}[]>([{id:'',passengerInfo:undefined}]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
