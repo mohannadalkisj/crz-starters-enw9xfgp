@@ -63,7 +63,7 @@ export default function Page() {
           },
         ].map((cruise) => (
           <div key={cruise.name} className="text-center">
-            <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-white mb-2">
+            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white mb-2">
               <img
                 src={cruise.image || '/placeholder.png'}
                 alt={cruise.name}
