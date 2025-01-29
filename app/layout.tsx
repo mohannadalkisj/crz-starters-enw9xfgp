@@ -1,3 +1,4 @@
+import { BookingProvider } from '@/lib/book-context';
 import './globals.css';
 import type { Metadata } from 'next';
 
@@ -13,7 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body style={{ zoom: 0.6 }}>{children}</body>
+      <body style={{ zoom: 0.6 }}>
+      <BookingProvider>{children}</BookingProvider>
+        </body>
     </html>
   );
 }

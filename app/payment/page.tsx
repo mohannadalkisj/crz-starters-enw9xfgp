@@ -1,56 +1,51 @@
-'use client';
+"use client"
 
-import { useState, useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { ArrowLeft, CreditCard } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { db } from '@/lib/firebase';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { useState, useEffect } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
+import { ArrowLeft, CreditCard } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { useBooking } from "@/lib/book-context"
 
 export default function PaymentPage() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const bookingId = searchParams.get('bookingId');
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const bookingId = searchParams.get("bookingId")
+  const { getBooking, updateBooking } = useBooking()
   const [paymentInfo, setPaymentInfo] = useState({
-    cardNumber: '',
-    expiryDate: '',
-    cvv: '',
-  });
+    cardNumber: "",
+    expiryDate: "",
+    cvv: "",
+  })
 
   useEffect(() => {
     const fetchBookingData = async () => {
       if (bookingId) {
-        const docRef = doc(db, 'bookings', bookingId);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          console.log('Booking data:', docSnap.data());
-        } else {
-          console.log('No such document!');
+        const booking = await getBooking(bookingId)
+        if (booking) {
+          setPaymentInfo(booking.paymentInfo)
         }
       }
-    };
-    fetchBookingData();
-  }, [bookingId]);
+    }
+    fetchBookingData()
+  }, [bookingId, getBooking])
 
-  const handleInputChange = (e: { target: { name: any; value: any; }; }) => {
-    setPaymentInfo({ ...paymentInfo, [e.target.name]: e.target.value });
-  };
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPaymentInfo({ ...paymentInfo, [e.target.name]: e.target.value })
+  }
 
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
     if (bookingId) {
       try {
-        await updateDoc(doc(db, 'bookings', bookingId), {
-          paymentInfo: paymentInfo,
-        });
-        router.push(`/otp?bookingId=${bookingId}`);
+        await updateBooking(bookingId, { paymentInfo })
+        router.push(`/otp?bookingId=${bookingId}`)
       } catch (error) {
-        console.error('Error updating document: ', error);
+        console.error("Error updating booking: ", error)
       }
     }
-  };
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 rtl" dir="rtl">
@@ -113,5 +108,6 @@ export default function PaymentPage() {
         </Card>
       </main>
     </div>
-  );
+  )
 }
+

@@ -1,50 +1,45 @@
-'use client';
+"use client"
 
-import { useState, useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { ArrowLeft, Check } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { db } from '@/lib/firebase';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { useState, useEffect } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
+import { ArrowLeft, Check } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { useBooking } from "@/lib/book-context"
 
 export default function OTPPage() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const bookingId = searchParams.get('bookingId');
-  const [otp, setOtp] = useState('');
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const bookingId = searchParams.get("bookingId")
+  const { getBooking, updateBooking } = useBooking()
+  const [otp, setOtp] = useState("")
 
   useEffect(() => {
     const fetchBookingData = async () => {
       if (bookingId) {
-        const docRef = doc(db, 'bookings', bookingId);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          console.log('Booking data:', docSnap.data());
-        } else {
-          console.log('No such document!');
+        const booking = await getBooking(bookingId)
+        if (booking) {
+          console.log("Booking data:", booking)
         }
       }
-    };
-    fetchBookingData();
-  }, [bookingId]);
+    }
+    fetchBookingData()
+  }, [bookingId, getBooking])
 
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
     if (bookingId) {
       try {
-        await updateDoc(doc(db, 'bookings', bookingId), {
-          otpVerified: true,
-        });
+        await updateBooking(bookingId, { otpVerified: true })
         // Here you would typically verify the OTP with your backend
         // For this example, we're just marking it as verified in Firestore
-        router.push(`/booking-confirmation?bookingId=${bookingId}`);
+        router.push(`/booking-confirmation?bookingId=${bookingId}`)
       } catch (error) {
-        console.error('Error updating document: ', error);
+        console.error("Error updating booking: ", error)
       }
     }
-  };
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 rtl" dir="rtl">
@@ -67,12 +62,7 @@ export default function OTPPage() {
             <div className="space-y-4">
               <div>
                 <label className="block text-sm mb-1">رمز التحقق</label>
-                <Input
-                  value={otp}
-                  onChange={(e) => setOtp(e.target.value)}
-                  placeholder="أدخل رمز التحقق"
-                  required
-                />
+                <Input value={otp} onChange={(e) => setOtp(e.target.value)} placeholder="أدخل رمز التحقق" required />
               </div>
             </div>
 
@@ -83,5 +73,6 @@ export default function OTPPage() {
         </Card>
       </main>
     </div>
-  );
+  )
 }
+

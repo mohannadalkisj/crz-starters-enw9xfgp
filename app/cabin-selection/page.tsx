@@ -1,32 +1,43 @@
-'use client';
+"use client"
 
-import { SetStateAction, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Image from 'next/image';
-import { ArrowLeft, Ship, Map, Calendar, Check } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { db } from '@/lib/firebase';
-import { collection, addDoc } from 'firebase/firestore';
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import Image from "next/image"
+import { ArrowLeft, Ship, Map, Calendar, Check } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useBooking } from "@/lib/book-context"
 
 export default function CabinSelectionPage() {
-  const router = useRouter();
-  const [selectedCabin, setSelectedCabin] = useState('');
+  const router = useRouter()
+  const { addBooking } = useBooking()
+  const [selectedCabin, setSelectedCabin] = useState<string | null>(null)
 
-  const handleCabinSelection = async (cabin: string | SetStateAction<string>) => {
-    setSelectedCabin(cabin!);
+  const handleCabinSelection = async (cabin: string) => {
+    setSelectedCabin(cabin)
     try {
-      const docRef = await addDoc(collection(db, 'bookings'), {
+      const bookingId = await addBooking({
         cabin: cabin,
-        timestamp: new Date(),
-      });
-      console.log('Booking document written with ID: ', docRef.id);
-      router.push(`/passenger-info?bookingId=${docRef.id}`);
+        passengerInfo: {
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          nationality: "",
+        },
+        paymentInfo: {
+          cardNumber: "",
+          expiryDate: "",
+          cvv: "",
+        },
+        otpVerified: false,
+      })
+      router.push(`/passenger-info?bookingId=${bookingId}`)
     } catch (e) {
-      console.error('Error adding document: ', e);
+      console.error("Error adding booking: ", e)
     }
-  };
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 rtl" dir="rtl">
@@ -62,9 +73,7 @@ export default function CabinSelectionPage() {
             </div>
 
             <div className="p-4">
-              <h2 className="text-xl font-bold mb-6">
-                رحلات 4 ليالي جدة | شرم الشيخ | جدة
-              </h2>
+              <h2 className="text-xl font-bold mb-6">رحلات 4 ليالي جدة | شرم الشيخ | جدة</h2>
 
               <Tabs defaultValue="interior">
                 <TabsList className="w-full justify-start mb-6">
@@ -106,25 +115,18 @@ export default function CabinSelectionPage() {
                   <div className="space-y-4">
                     <h3 className="text-lg font-bold">كبينة داخلية</h3>
                     <p className="text-gray-600">
-                      سرير كوين أو سريرين منفصلين (حسب الطلب) حمام خاص للإستحمام
-                      ومجفف للشعر تلفزيون مسطح, خزانة, تليفون, ميني بار, وتكييف
-                      هواء للتحكم عن بُعد بعض الكبائن توفر سرير بولمان إضافي
+                      سرير كوين أو سريرين منفصلين (حسب الطلب) حمام خاص للإستحمام ومجفف للشعر تلفزيون مسطح, خزانة,
+                      تليفون, ميني بار, وتكييف هواء للتحكم عن بُعد بعض الكبائن توفر سرير بولمان إضافي
                     </p>
 
                     <div className="flex justify-between items-center pt-4 border-t">
                       <div>
-                        <div className="text-sm">
-                          الحد الأدنى لسعة الكابينة: 1
-                        </div>
+                        <div className="text-sm">الحد الأدنى لسعة الكابينة: 1</div>
                         <div className="text-sm">الحد الأقصى للكابينة: 3</div>
                       </div>
                       <div className="text-left">
-                        <div className="text-2xl font-bold text-blue-600">
-                          ر.س. 3410
-                        </div>
-                        <div className="text-sm text-gray-600">
-                          شامل الضريبة
-                        </div>
+                        <div className="text-2xl font-bold text-blue-600">ر.س. 3410</div>
+                        <div className="text-sm text-gray-600">شامل الضريبة</div>
                         <div className="flex items-center gap-1 text-green-600">
                           <Check className="h-4 w-4" />
                           <span className="text-sm">أقساط</span>
@@ -132,11 +134,7 @@ export default function CabinSelectionPage() {
                       </div>
                     </div>
 
-                    <Button
-                      className="w-full"
-                      size="lg"
-                      onClick={() => handleCabinSelection('interior')}
-                    >
+                    <Button className="w-full" size="lg" onClick={() => handleCabinSelection("interior")}>
                       اختيار
                     </Button>
                   </div>
@@ -148,5 +146,6 @@ export default function CabinSelectionPage() {
         </Card>
       </main>
     </div>
-  );
+  )
 }
+

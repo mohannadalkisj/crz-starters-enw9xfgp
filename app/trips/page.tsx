@@ -110,17 +110,17 @@ export default function TripsPage() {
           ].map((trip) => (
             <Card key={trip.id} className="overflow-hidden">
               <div className="space-y-4">
-                <div className="flex gap-4 p-4 border-b">
+                <div className="flex gap-1 py-4 border-b">
                   <Button
                     variant="ghost"
-                    className="flex items-center gap-2 text-blue-600"
+                    className="flex items-center gap-1 text-blue-600"
                   >
                     <Ship className="h-5 w-5" />
                     معلومات السفينة
                   </Button>
                   <Button
                     variant="ghost"
-                    className="flex items-center gap-2 text-blue-600"
+                    className="flex items-center gap-1 text-blue-600"
                   >
                     <svg
                       className="h-5 w-5"
@@ -135,7 +135,7 @@ export default function TripsPage() {
                   </Button>
                   <Button
                     variant="ghost"
-                    className="flex items-center gap-2 text-blue-600"
+                    className="flex items-center gap-1 text-blue-600"
                   >
                     <Calendar className="h-5 w-5" />
                     مواعيد أخرى

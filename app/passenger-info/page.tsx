@@ -1,66 +1,55 @@
-'use client';
+"use client"
 
-import { useState, useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import Image from 'next/image';
-import { ArrowLeft, Ship, Map, Calendar, Upload, Check } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import { db } from '@/lib/firebase';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { useState, useEffect } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
+import Image from "next/image"
+import { ArrowLeft, Ship, Map, Calendar, Upload, Check } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useBooking } from "@/lib/book-context"
 
 export default function PassengerInfoPage() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const bookingId = searchParams.get('bookingId');
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const bookingId = searchParams.get("bookingId")
+  const { getBooking, updateBooking } = useBooking()
   const [passengerInfo, setPassengerInfo] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    nationality: '',
-  });
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    nationality: "",
+  })
 
   useEffect(() => {
     const fetchBookingData = async () => {
       if (bookingId) {
-        const docRef = doc(db, 'bookings', bookingId);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          console.log('Booking data:', docSnap.data());
-        } else {
-          console.log('No such document!');
+        const booking = await getBooking(bookingId)
+        if (booking) {
+          setPassengerInfo(booking.passengerInfo)
         }
       }
-    };
-    fetchBookingData();
-  }, [bookingId]);
+    }
+    fetchBookingData()
+  }, [bookingId, getBooking])
 
-  const handleInputChange = (e: { target: { name: any; value: any; }; }) => {
-    setPassengerInfo({ ...passengerInfo, [e.target.name]: e.target.value });
-  };
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassengerInfo({ ...passengerInfo, [e.target.name]: e.target.value })
+  }
 
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
     if (bookingId) {
       try {
-        await updateDoc(doc(db, 'bookings', bookingId), {
-          passengerInfo: passengerInfo,
-        });
-        router.push(`/payment?bookingId=${bookingId}`);
+        await updateBooking(bookingId, { passengerInfo })
+        router.push(`/payment?bookingId=${bookingId}`)
       } catch (error) {
-        console.error('Error updating document: ', error);
+        console.error("Error updating booking: ", error)
       }
     }
-  };
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 rtl" dir="rtl">
@@ -183,9 +172,7 @@ export default function PassengerInfoPage() {
                 <Select
                   name="nationality"
                   value={passengerInfo.nationality}
-                  onValueChange={(value) =>
-                    setPassengerInfo({ ...passengerInfo, nationality: value })
-                  }
+                  onValueChange={(value) => setPassengerInfo({ ...passengerInfo, nationality: value })}
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="اختر الجنسية" />
@@ -206,5 +193,6 @@ export default function PassengerInfoPage() {
         </Card>
       </main>
     </div>
-  );
+  )
 }
+
