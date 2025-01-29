@@ -102,7 +102,7 @@ export default function CabinSelectionPage() {
                   <div className="grid grid-cols-4 gap-2">
                     <div className="relative aspect-square rounded-lg overflow-hidden">
                       <img
-                      src="/cvc.png"
+                        src="/cvc.png"
                         alt="Interior Cabin Thumbnail"
                         className="object-cover"
                       />
@@ -130,7 +130,6 @@ export default function CabinSelectionPage() {
                         </div>
                       </div>
                     </div>
-
                     <Button className="w-full" size="lg" onClick={() => handleCabinSelection("interior")}>
                       اختيار
                     </Button>
