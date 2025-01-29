@@ -10,9 +10,11 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { CalendarDialog } from '@/components/calnder';
 import { useState } from 'react';
+import { RouteDialog } from '@/components/route-dialog';
 
 export default function Page() {
   const [ope, setOpen] = useState(false);
+  const [opeRout, setOpenRout] = useState(false);
   return (
     <div
       className="min-h-screen rtl"
@@ -130,7 +132,10 @@ export default function Page() {
               جميع التواريخ
             </Button>
             <CalendarDialog open={ope} onOpenChange={setOpen} />
-            <Button variant="outline" className="h-14">
+            <Button variant="outline" className="h-14"
+             onClick={() => {
+              setOpenRout(true);
+            }}>
               <svg
                 className="w-5 h-5 ml-2"
                 viewBox="0 0 24 24"
@@ -146,6 +151,7 @@ export default function Page() {
               <br />
               مسار الرحلة
             </Button>
+            <RouteDialog open={opeRout} onOpenChange={setOpenRout}/>
           </div>
             <Link href="/trips">          <Button variant="outline" className="w-full">بحث
             </Button>
