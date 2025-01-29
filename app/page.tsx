@@ -9,12 +9,23 @@ import {
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { CalendarDialog } from '@/components/calnder';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { RouteDialog } from '@/components/route-dialog';
-
+interface Route {
+  id: number
+  title: string
+  image: string
+}
 export default function Page() {
   const [ope, setOpen] = useState(false);
   const [opeRout, setOpenRout] = useState(false);
+  const [selectedRoute, setSelectedRoute] = React.useState<Route | null>(null)
+
+  const handleRouteSelect = async (route: Route) => {
+    setSelectedRoute(route)
+    // If you want to update the booking with the selected route
+    // await updateBooking(bookingId, { route })
+  }
   return (
     <div
       className="min-h-screen rtl"
@@ -151,7 +162,7 @@ export default function Page() {
               <br />
               مسار الرحلة
             </Button>
-            <RouteDialog open={opeRout} onOpenChange={setOpenRout}/>
+            <RouteDialog open={opeRout} onOpenChange={setOpenRout}   onRouteSelect={handleRouteSelect}/>
           </div>
             <Link href="/trips">          <Button variant="outline" className="w-full">بحث
             </Button>

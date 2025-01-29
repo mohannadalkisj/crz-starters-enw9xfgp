@@ -1,12 +1,20 @@
 "use client"
 
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import type React from "react"
+import { createContext, useContext, useState, useEffect } from "react"
+import { db } from "@/lib/firebase"
 import { collection, getDocs, doc, getDoc, updateDoc, addDoc } from "firebase/firestore"
-import { db } from './firebase'
+
+type Route = {
+  id: number
+  title: string
+  image: string
+}
 
 type Booking = {
   id: string
   cabin: string
+  route?: Route
   passengerInfo: {
     firstName: string
     lastName: string
@@ -26,7 +34,7 @@ type BookingContextType = {
   bookings: Booking[]
   loading: boolean
   error: string | null
-  addBooking: (booking: Omit<Booking, 'id'>) => Promise<string>
+  addBooking: (booking: Omit<Booking, "id">) => Promise<string>
   updateBooking: (id: string, booking: Partial<Booking>) => Promise<void>
   getBooking: (id: string) => Promise<Booking | null>
 }
@@ -36,7 +44,7 @@ const BookingContext = createContext<BookingContextType | undefined>(undefined)
 export const useBooking = () => {
   const context = useContext(BookingContext)
   if (context === undefined) {
-    throw new Error('useBooking must be used within a BookingProvider')
+    throw new Error("useBooking must be used within a BookingProvider")
   }
   return context
 }
@@ -50,9 +58,9 @@ export const BookingProvider: React.FC<{ children: React.ReactNode }> = ({ child
     const fetchBookings = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, "bookings"))
-        const bookingsData = querySnapshot.docs.map(doc => ({
+        const bookingsData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
-          ...doc.data()
+          ...doc.data(),
         })) as Booking[]
         setBookings(bookingsData)
         setLoading(false)
@@ -66,7 +74,7 @@ export const BookingProvider: React.FC<{ children: React.ReactNode }> = ({ child
     fetchBookings()
   }, [])
 
-  const addBooking = async (booking: Omit<Booking, 'id'>): Promise<string> => {
+  const addBooking = async (booking: Omit<Booking, "id">): Promise<string> => {
     try {
       const docRef = await addDoc(collection(db, "bookings"), booking)
       const newBooking = { id: docRef.id, ...booking }
@@ -82,9 +90,7 @@ export const BookingProvider: React.FC<{ children: React.ReactNode }> = ({ child
     try {
       const bookingRef = doc(db, "bookings", id)
       await updateDoc(bookingRef, updatedFields)
-      setBookings(bookings.map(booking => 
-        booking.id === id ? { ...booking, ...updatedFields } : booking
-      ))
+      setBookings(bookings.map((booking) => (booking.id === id ? { ...booking, ...updatedFields } : booking)))
     } catch (err) {
       console.error("Error updating booking: ", err)
       throw new Error("Failed to update booking. Please try again later.")
@@ -112,3 +118,4 @@ export const BookingProvider: React.FC<{ children: React.ReactNode }> = ({ child
     </BookingContext.Provider>
   )
 }
+
