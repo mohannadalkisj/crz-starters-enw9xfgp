@@ -64,10 +64,9 @@ export default function CabinSelectionPage() {
             </div>
 
             <div className="relative aspect-[2/1] bg-gray-100">
-              <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/www.reserval.com_ar%20(3)-n9EAGhWOMaZbpS4Glfcpz2IWWab59S.png"
+              <img
+                src="/cvc.png"
                 alt="Cruise Ship"
-                fill
                 className="object-cover"
               />
             </div>
@@ -93,20 +92,18 @@ export default function CabinSelectionPage() {
 
                 <TabsContent value="interior" className="space-y-6">
                   <div className="relative aspect-video rounded-lg overflow-hidden">
-                    <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/www.reserval.com_ar%20(3)-n9EAGhWOMaZbpS4Glfcpz2IWWab59S.png"
+                    <img
+                      src="/cvc.png"
                       alt="Interior Cabin"
-                      fill
                       className="object-cover"
                     />
                   </div>
 
                   <div className="grid grid-cols-4 gap-2">
                     <div className="relative aspect-square rounded-lg overflow-hidden">
-                      <Image
-                        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/www.reserval.com_ar%20(3)-n9EAGhWOMaZbpS4Glfcpz2IWWab59S.png"
+                      <img
+                      src="/cvc.png"
                         alt="Interior Cabin Thumbnail"
-                        fill
                         className="object-cover"
                       />
                     </div>
