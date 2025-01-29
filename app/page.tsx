@@ -85,7 +85,7 @@ export default function Page() {
           <div className="flex items-center justify-between mb-6">
             <h1 className="text-2xl font-bold text-blue-900">أرويا كروز</h1>
             <Image
-              src="/"
+         src="/next.svg" 
               alt="Aroya Cruises"
               width={100}
               height={40}
