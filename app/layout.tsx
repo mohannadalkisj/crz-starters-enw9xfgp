@@ -1,6 +1,8 @@
 import { BookingProvider } from '@/lib/book-context';
 import './globals.css';
 import type { Metadata } from 'next';
+import { Button } from '@/components/ui/button';
+import { Briefcase, Home, Tag, User } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,7 +17,35 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body style={{ zoom: 0.7 }}>
-      <BookingProvider>{children}</BookingProvider>
+      <BookingProvider>
+        <div>
+        {children}
+      </div>
+       {/* Bottom Navigation */}
+       <nav className="fixed bottom-0 left-0 right-0 bg-blue-900 text-white ">
+        <div className="flex justify-around p-4">
+          <Button variant="ghost" className="flex flex-col items-center hover:bg-blue-900 hover:text-blue-500">
+            <User className=" mb-1" />
+            <span className="text-xs">لوحة التحكم</span>
+          </Button>
+          <Button variant="ghost" className="flex flex-col items-center hover:bg-blue-900 hover:text-blue-500">
+            <Briefcase  className="mb-1" />
+            <span className="text-xs">حجوزاتي</span>
+          </Button>
+          <Button variant="ghost" className="flex flex-col items-center hover:bg-blue-900 hover:text-blue-500">
+            <Tag className=" mb-1" />
+            <span className="text-xs">العروض</span>
+          </Button>
+          <Button
+            variant="ghost"
+            className="flex flex-col items-center text-blue-600 hover:bg-blue-900 hover:text-blue-500"
+          >
+            <Home className=" mb-1" />
+            <span className="text-xs text-white">الصفحة الرئيسية</span>
+          </Button>
+        </div>
+      </nav>
+      </BookingProvider>
         </body>
     </html>
   );
