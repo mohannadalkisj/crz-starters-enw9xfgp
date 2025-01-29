@@ -30,7 +30,7 @@ export default function OTPPage() {
     fetchBookingData();
   }, [bookingId]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     if (bookingId) {
       try {
