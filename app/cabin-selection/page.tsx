@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { ArrowLeft, Ship, Map, Calendar, Check } from 'lucide-react';
@@ -14,7 +14,7 @@ export default function CabinSelectionPage() {
   const router = useRouter();
   const [selectedCabin, setSelectedCabin] = useState(null);
 
-  const handleCabinSelection = async (cabin) => {
+  const handleCabinSelection = async (cabin: string | SetStateAction<null>) => {
     setSelectedCabin(cabin);
     try {
       const docRef = await addDoc(collection(db, 'bookings'), {
