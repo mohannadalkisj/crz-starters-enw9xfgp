@@ -53,21 +53,21 @@ export default function Page() {
         {[
           {
             name: 'أرويا',
-            image: '/',
+            image: '/123.webp',
           },
           {
             name: 'رويال كاريبيان',
-            image: '/',
+            image: '/345.webp',
           },
           {
             name: 'ام سي ال',
-            image: '/',
+            image: '/cvc.png',
           },
         ].map((cruise) => (
           <div key={cruise.name} className="text-center">
             <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-white mb-2">
-              <Image
-                src={cruise.image || '/placeholder.svg'}
+              <img
+                src={cruise.image || '/placeholder.png'}
                 alt={cruise.name}
                 width={80}
                 height={80}
@@ -149,9 +149,10 @@ export default function Page() {
               مسار الرحلة
             </Button>
           </div>
-          <Button variant="outline" className="w-full">
-            <Link href="/trips">بحث</Link>
-          </Button>
+            <Link href="/trips">          <Button variant="outline" className="w-full">بحث
+            </Button>
+
+</Link>
         </div>
 
         <div className="grid grid-cols-4 gap-4 pt-12">
