@@ -143,10 +143,9 @@ export default function TripsPage() {
                 </div>
 
                 <div className="relative aspect-[2/1] bg-gray-100">
-                  <Image
-                    src={trip.image || '/placeholder.svg'}
+                  <img
+                    src={trip.image || '/placeholder.png'}
                     alt={trip.title}
-                    fill
                     className="object-cover"
                   />
                 </div>
@@ -200,7 +199,10 @@ export default function TripsPage() {
 
                   <div className="flex items-center justify-between gap-4">
                     <Button className="flex-1" size="lg">
-                      احجز رحلة بحرية
+                      <Link href={
+                      '/cabin-selection'
+                      }>
+                      احجز رحلة بحرية</Link>
                     </Button>
                     <Button
                       variant="destructive"
