@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
+import Link from 'next/link';
 
 export default function Page() {
   return (
@@ -31,7 +32,7 @@ export default function Page() {
       </div>
 
       <main className="container mx-auto px-4 py-6">
-        <Card className="overflow-hidden">
+        <Card className="overflow-hidden py-16">
           <div className="space-y-4">
             <div className="flex gap-4 p-4 border-b">
               <Ship className="h-6 w-6 text-blue-600" />
@@ -104,10 +105,11 @@ export default function Page() {
                   </div>
                 </div>
               </div>
-
+<Link href="/cabin-selection">
               <Button className="w-full" size="lg">
                 متابعة
               </Button>
+              </Link>
             </div>
           </div>
         </Card>
