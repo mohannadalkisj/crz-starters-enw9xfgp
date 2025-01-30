@@ -54,7 +54,7 @@ export default function CabinSelectionPage() {
         </div>
       </div>
 
-      <main className="container mx-auto px-4 py-6">
+      <main className="container mx-auto px-4 py-16">
         <Card className="overflow-hidden">
           <div className="space-y-4">
             <div className="flex gap-4 p-4 border-b">
