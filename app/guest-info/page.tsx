@@ -40,10 +40,9 @@ export default function Page() {
             </div>
 
             <div className="relative aspect-[2/1] bg-gray-100">
-              <Image
-                src="/placholder.png"
+              <img
+                src="/cvc.png"
                 alt="Cruise Ship"
-                fill
                 className="object-cover"
               />
             </div>
