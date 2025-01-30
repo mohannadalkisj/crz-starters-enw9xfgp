@@ -25,35 +25,41 @@ export default function RootLayout({
        {/* Bottom Navigation */}
        <nav className="fixed bottom-0 left-0 right-0 bg-blue-900 text-white ">
         <div className="flex justify-around p-4">
+        <Link href="/login">
           <Button variant="ghost" className="flex flex-col items-center hover:bg-blue-900 hover:text-blue-500">
-            <Link href="/login">
             <User className=" mb-1" />
             <span className="text-xs">لوحة التحكم</span>
-            </Link>
           </Button>
-          <Button variant="ghost" className="flex flex-col items-center hover:bg-blue-900 hover:text-blue-500">
+          </Link>
+
           <Link href="/booking">
+       
+          <Button variant="ghost" className="flex flex-col items-center hover:bg-blue-900 hover:text-blue-500">
             <Briefcase  className="mb-1" />
             <span className="text-xs">حجوزاتي</span>
-            </Link>
 
           </Button>
-          <Button variant="ghost" className="flex flex-col items-center hover:bg-blue-900 hover:text-blue-500">
-          <Link href="/offers">
+          </Link>
+
+          <Link href="/offers" className=' flex flex-col justify-center'>
+       
+          <Button variant="ghost" className='flex flex-col items-center hover:bg-blue-900 hover:text-blue-500'>
             <Tag className=" mb-1" />
             <span className="text-xs">العروض</span>
-            </Link>
 
           </Button>
+          </Link>
+          <Link href="/">
+
           <Button
             variant="ghost"
             className="flex flex-col items-center text-blue-600 hover:bg-blue-900 hover:text-blue-500"
           >
-              <Link href="/">
             <Home className=" mb-1" />
             <span className="text-xs text-white">الصفحة الرئيسية</span>
-            </Link>
           </Button>
+          </Link>
+
         </div>
       </nav>
       </BookingProvider>
