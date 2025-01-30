@@ -9,6 +9,7 @@ import { RouteDialog } from "@/components/route-dialog"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useBooking } from "@/lib/book-context"
 import { CalendarDialog } from "@/components/calnder"
+import Link from "next/link"
 
 interface Route {
   id: number
@@ -200,7 +201,7 @@ export default function TripsPage() {
                 </div>
 
                 <div className="relative aspect-[2/1] bg-gray-100">
-                  <img src={trip.image || "/placeholder.svg"} alt={trip.title}  className="object-cover" />
+                  <img src={trip.image || "/placeholder.svg"} alt={trip.title} className="object-cover" />
                 </div>
 
                 <div className="p-4 space-y-4">
@@ -248,7 +249,9 @@ export default function TripsPage() {
 
                   <div className="flex items-center justify-between gap-4">
                     <Button className="flex-1" size="lg">
-                      احجز رحلة بحرية
+                      <Link href="/guest-info">
+                        احجز رحلة بحرية
+                      </Link>
                     </Button>
                     <Button variant="destructive" size="lg" className="px-4 bg-red-100 hover:bg-red-200 text-red-600">
                       % Promo
