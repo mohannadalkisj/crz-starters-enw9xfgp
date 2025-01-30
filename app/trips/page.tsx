@@ -51,10 +51,9 @@ export default function TripsPage() {
           <Card className="p-4">
             <div className="flex items-center gap-4">
               <div className="relative w-20 h-20 rounded-lg overflow-hidden">
-                <Image
-                  src={selectedRoute.image || "/placeholder.svg"}
+                <img
+                  src={selectedRoute.image || "/cvc.png"}
                   alt={selectedRoute.title}
-                  fill
                   className="object-cover"
                 />
               </div>
@@ -103,7 +102,7 @@ export default function TripsPage() {
             {
               id: 1,
               title: "رحلات 3 ليالي جدة | الجزيرة الخاصة | جدة",
-              image: "/",
+              image: "/cvc.png",
               departure: "خميس, ١ فبراير, ٢٠٢٥",
               arrival: "أحد, ٤ فبراير, ٢٠٢٥",
               price: 998,
@@ -112,7 +111,7 @@ export default function TripsPage() {
             {
               id: 2,
               title: "رحلات 3 ليالي جدة | الجزيرة الخاصة | جدة",
-              image: "/",
+              image: "/cvc.png",
               departure: "خميس, ١ فبراير, ٢٠٢٥",
               arrival: "أحد, ٤ فبراير, ٢٠٢٥",
               price: 998,
@@ -121,7 +120,7 @@ export default function TripsPage() {
             {
               id: 3,
               title: "رحلات 4 ليالي جدة | شرم الشيخ | جدة",
-              image: "/",
+              image: "/cvc.png",
               departure: "أحد, ٤ فبراير, ٢٠٢٥",
               arrival: "خميس, ٨ فبراير, ٢٠٢٥",
               price: 999,
@@ -130,7 +129,7 @@ export default function TripsPage() {
             {
               id: 4,
               title: "رحلات 4 ليالي جدة | شرم الشيخ | جدة",
-              image: "/",
+              image: "/cvc.png",
               departure: "أحد, ٤ فبراير, ٢٠٢٥",
               arrival: "خميس, ٨ فبراير, ٢٠٢٥",
               price: 999,
@@ -139,7 +138,7 @@ export default function TripsPage() {
             {
               id: 5,
               title: "رحلات 4 ليالي جدة | العقبة | جدة",
-              image: "/",
+              image: "/cvc.png",
               departure: "أحد, ٤ فبراير, ٢٠٢٥",
               arrival: "خميس, ٨ فبراير, ٢٠٢٥",
               price: 999,
@@ -148,7 +147,7 @@ export default function TripsPage() {
             {
               id: 6,
               title: "رحلات 4 ليالي جدة | العقبة | جدة",
-              image: "/",
+              image: "/cvc.png",
               departure: "أحد, ٤ فبراير, ٢٠٢٥",
               arrival: "خميس, ٨ فبراير, ٢٠٢٥",
               price: 999,
@@ -157,7 +156,7 @@ export default function TripsPage() {
             {
               id: 7,
               title: "رحلة يوم التأسيس 7 ليالي جدة | العقبة | شرم الشيخ | العين السخنة | جدة",
-              image: "/",
+              image: "/cvc.png",
               departure: "خميس, ١٥ فبراير, ٢٠٢٥",
               arrival: "خميس, ٢٢ فبراير, ٢٠٢٥",
               price: 5050,
@@ -166,7 +165,7 @@ export default function TripsPage() {
             {
               id: 8,
               title: "رحلة عيد الفطر 4 ليالي جدة | العقبة | شرم الشيخ",
-              image: "/",
+              image: "/cvc.png",
               departure: "أحد, ٦ أبريل, ٢٠٢٥",
               arrival: "خميس, ١٠ أبريل, ٢٠٢٥",
               price: 1999,
@@ -201,7 +200,7 @@ export default function TripsPage() {
                 </div>
 
                 <div className="relative aspect-[2/1] bg-gray-100">
-                  <Image src={trip.image || "/placeholder.svg"} alt={trip.title} fill className="object-cover" />
+                  <img src={trip.image || "/placeholder.svg"} alt={trip.title}  className="object-cover" />
                 </div>
 
                 <div className="p-4 space-y-4">

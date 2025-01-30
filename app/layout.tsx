@@ -3,6 +3,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Button } from '@/components/ui/button';
 import { Briefcase, Home, Tag, User } from 'lucide-react';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -25,8 +26,10 @@ export default function RootLayout({
        <nav className="fixed bottom-0 left-0 right-0 bg-blue-900 text-white ">
         <div className="flex justify-around p-4">
           <Button variant="ghost" className="flex flex-col items-center hover:bg-blue-900 hover:text-blue-500">
+            <Link href="/auth">
             <User className=" mb-1" />
             <span className="text-xs">لوحة التحكم</span>
+            </Link>
           </Button>
           <Button variant="ghost" className="flex flex-col items-center hover:bg-blue-900 hover:text-blue-500">
             <Briefcase  className="mb-1" />

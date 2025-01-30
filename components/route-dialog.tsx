@@ -23,31 +23,31 @@ const routes = [
     id: 1,
     title: "جدة - الجزيرة الخاصة - جدة",
     image:
-      "/",
+      "/jeddah.png",
   },
   {
     id: 2,
     title: "جدة - شرم الشيخ - جدة",
     image:
-      "/",
+      "/sharm.png",
   },
   {
     id: 3,
     title: "جدة - العقبة - جدة",
     image:
-      "/",
+      "/petra.png",
   },
   {
     id: 4,
     title: "رحلة كروز عيد الفطر",
     image:
-      "/",
+      "/aroya_ship.jpg",
   },
   {
     id: 5,
     title: "رحلة كروز يوم التأسيس",
     image:
-      "/",
+      "/aroya_ship.jpg",
   },
 ]
 
@@ -71,11 +71,10 @@ export function RouteDialog({ open, onOpenChange, onRouteSelect, selectedRouteId
               }}
             >
               <div className="relative h-32">
-                <Image
+                <img
                   src={route.image || "/placeholder.svg"}
                   alt={route.title}
-                  fill
-                  className="object-cover transition-transform group-hover:scale-105"
+                  className="object-cover w-full h-64 transition-transform group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
                   <h3 className="text-white text-2xl font-bold text-center">{route.title}</h3>
