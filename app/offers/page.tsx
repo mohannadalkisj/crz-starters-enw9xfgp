@@ -80,7 +80,7 @@ export default function OffersPage() {
             </div>
           </div>
 
-          <div className="flex justify-center fixed bootom-0 left-0 right-0">
+          <div className="flex justify-center">
             <img
               src="/arabic-AppImage.png"
               alt="App Screenshots"
