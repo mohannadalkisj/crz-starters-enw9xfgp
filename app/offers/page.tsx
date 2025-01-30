@@ -45,8 +45,8 @@ export default function OffersPage() {
 
         {/* Main Promo Card */}
         <div className="relative rounded-lg overflow-hidden mb-8">
-          <Image
-            src="/"
+          <img
+            src="/aroya_offers_arabic.webp"
             alt="Best Prices Promotion"
             width={600}
             height={300}
@@ -69,24 +69,24 @@ export default function OffersPage() {
             <div className="flex justify-center gap-4">
               <Link href="https://apps.apple.com" target="_blank">
                 <Button variant="outline" className="bg-[#1a2b48] text-white hover:bg-[#1a2b48]/90">
-                  <Image src="/app-store.png" alt="App Store" width={120} height={40} />
+                  <Image src="/appstore-arabic.svg" alt="App Store" width={120} height={40} />
                 </Button>
               </Link>
               <Link href="https://play.google.com" target="_blank">
                 <Button variant="outline" className="bg-[#1a2b48] text-white hover:bg-[#1a2b48]/90">
-                  <Image src="/play-store.png" alt="Play Store" width={120} height={40} />
+                  <Image src="/googleplay-arabic.svg" alt="Play Store" width={120} height={40} />
                 </Button>
               </Link>
             </div>
           </div>
 
-          <div className="flex justify-center">
-            <Image
-              src="/"
+          <div className="flex justify-center fixed bootom-0 left-0 right-0">
+            <img
+              src="/arabic-AppImage.png"
               alt="App Screenshots"
               width={300}
-              height={600}
-              className="max-w-[300px]"
+              height={900}
+              className="w-full"
             />
           </div>
         </div>
